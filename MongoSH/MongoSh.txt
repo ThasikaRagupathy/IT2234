@@ -1,0 +1,38 @@
+~Delete data base
+ :db.dropDatabase()
+ 
+1~Delete Collection
+ :db.sampledb.drop
+ 
+2~deleteOne
+ :db.degrees.deleteOne({_id:ObjectId('680ee980719f94ab8b8dc710')})
+   
+3~Check the data after deletion   
+ :db.degrees.find().projection()
+ 
+4~Find the data by name and duration  
+ :db.degrees.find().projection(['name','duration'])
+ 
+5~Use pretty to filter by name 
+ :db.degrees.find({},{name:1,_id:0}).pretty()
+
+6~DeleteMany less thyan 4 duration 
+ :db.degrees.deleteMany({duration:{$lt:4}})
+
+7~Update the data
+ :db.degrees.updateOne({_id:ObjectId('680eea66719f94ab8b8dc713')},{$set:{name:'B.sc in IT',duration:3}})
+
+8~After the update find that data
+ :db.degrees.findOne({_id:ObjectId('680eea66719f94ab8b8dc713')})
+ 
+9~Update Many
+ :db.degrees.updateMany({duration:{$gte:4}},{$inc:{duration:1}})
+ 
+10~Check the data
+ :db.degrees.find()
+ 
+11~Update the students
+ :db.students.updateOne({regno:'2021ict06'},{$push:{skills:'PHP'}})
+ 
+12~Check after the update
+ :db.students.findOne({regno:'2021ict06'})
