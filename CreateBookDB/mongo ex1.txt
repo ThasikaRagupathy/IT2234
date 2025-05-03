@@ -1,0 +1,149 @@
+
+create a database bookshop
+
+use bookshop; // Switch to or create the "bookshop" database
+
+db.books.insertMany([
+  {
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "published_year": 1937,
+    "genres": ["Fantasy", "Adventure"],
+    "pages": 310,
+    "available": true,
+    "rating": 4.8
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "published_year": 1949,
+    "genres": ["Dystopian", "Political Fiction"],
+    "pages": 328,
+    "available": true,
+    "rating": 4.7
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "published_year": 1960,
+    "genres": ["Southern Gothic", "Drama"],
+    "pages": 281,
+    "available": false,
+    "rating": 4.6
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "published_year": 1925,
+    "genres": ["Tragedy"],
+    "pages": 180,
+    "available": true,
+    "rating": 4.4
+  },
+  {
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "published_year": 1932,
+    "genres": ["Science Fiction", "Dystopian"],
+    "pages": 311,
+    "available": true,
+    "rating": 4.2
+  }
+]);
+
+
+create a collection books
+insert the following data
+{
+  "title": "The Hobbit",
+  "author": "J.R.R. Tolkien",
+  "published_year": 1937,
+  "genres": ["Fantasy", "Adventure"],
+  "pages": 310,
+  "available": true,
+  "rating": 4.8
+}
+
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "published_year": 1949,
+    "genres": ["Dystopian", "Political Fiction"],
+    "pages": 328,
+    "available": true,
+    "rating": 4.7
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "published_year": 1960,
+    "genres": ["Southern Gothic", "Drama"],
+    "pages": 281,
+    "available": false,
+    "rating": 4.6
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "published_year": 1925,
+    "genres": ["Tragedy"],
+    "pages": 180,
+    "available": true,
+    "rating": 4.4
+  },
+  {
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "published_year": 1932,
+    "genres": ["Science Fiction", "Dystopian"],
+    "pages": 311,
+    "available": true,
+    "rating": 4.2
+  }
+
+Find all books
+db.books.find({});
+
+
+Find all books published after 1950
+db.books.find({ published_year: { $gt: 1950 } });
+
+
+Find the avilable books
+db.books.find({ available: true });
+
+
+Find all books that belong to the "Dystopian" genre
+db.books.find({ genres: "Dystopian" });
+
+Project only title and author fields:
+db.books.find({}, { title: 1, author: 1, _id: 0 });
+
+Update the book "1984" to set available: false:
+db.books.updateOne(
+  { title: "1984" },
+  { $set: { available: false } }
+);
+
+Increase the rating of "Brave New World" by +0.1:
+db.books.updateOne(
+  { title: "Brave New World" },
+  { $inc: { rating: 0.1 } }
+);
+
+Add a new genre "Classic" to "The Great Gatsby":
+db.books.updateOne(
+  { title: "The Great Gatsby" },
+  { $addToSet: { genres: "Classic" } }
+);
+
+Sort books by published_year ascending:
+db.books.find({}).sort({ published_year: 1 });
+
+Sort books by rating descending:
+db.books.find({}).sort({ rating: -1 });
+
+Delete all books with a rating lower than 4.5:
+db.books.deleteMany({ rating: { $lt: 4.5 } });
+
+ 
