@@ -1,0 +1,16 @@
+{
+  "name": "libapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "ICAE03",
+  "license": "ISC",
+  "description": "Library book lending app",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1",
+    "nodemon": "^3.1.10"
+  }
+}
